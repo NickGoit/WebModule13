@@ -79,8 +79,10 @@ class Auth:
             raise credentials_exception
 
         user = self.r.get(f"user:{email}")
+        print(f'User get from Cashe')
         if user is None:
             user = await repository_users.get_user_by_email(email, db)
+            print(f'User get from Postgres_Db')
             if user is None:
                 raise credentials_exception
             self.r.set(f"user:{email}", pickle.dumps(user))
