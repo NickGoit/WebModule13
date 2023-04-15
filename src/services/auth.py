@@ -12,12 +12,17 @@ import pickle
 
 from src.database.db import get_db
 from src.repository import users as repository_users
+from src.conf.config import settings
 
 
 class Auth:
     pwd_context = CryptContext(schemes=["bcrypt"], deprecated="auto")
-    SECRET_KEY = "secret_key"
-    ALGORITHM = "HS256"
+    # SECRET_KEY = "secret_key"
+    # ALGORITHM = "HS256"
+
+    SECRET_KEY = settings.secret_key_jwt
+    ALGORITHM = settings.algorithm
+
     oauth2_scheme = OAuth2PasswordBearer(tokenUrl="/api/auth/login")
     r = redis.Redis(host='localhost', port=6379, db=0)
 

@@ -5,19 +5,26 @@ from fastapi_mail.errors import ConnectionErrors
 from pydantic import EmailStr
 
 from src.services.auth import auth_service
+from src.conf.config import settings
 
 conf = ConnectionConfig(
-    MAIL_USERNAME="Fastapi_app@meta.ua",
-    MAIL_PASSWORD="WebModule13",
-    MAIL_FROM="Fastapi_app@meta.ua",
-    MAIL_PORT=465,
-    MAIL_SERVER="smtp.meta.ua",
+    # MAIL_USERNAME="Fastapi_app@meta.ua",
+    # MAIL_PASSWORD="WebModule13",
+    # MAIL_FROM="Fastapi_app@meta.ua",
+    # MAIL_PORT=465,
+    # MAIL_SERVER="smtp.meta.ua",
+    MAIL_USERNAME=settings.mail_username,
+    MAIL_PASSWORD=settings.mail_password,
+    MAIL_FROM=settings.mail_from,
+    MAIL_PORT=settings.mail_port,
+    MAIL_SERVER=settings.mail_server,
     MAIL_FROM_NAME="Example email",
     MAIL_STARTTLS=False,
     MAIL_SSL_TLS=True,
     USE_CREDENTIALS=True,
     VALIDATE_CERTS=True,
     TEMPLATE_FOLDER=Path(__file__).parent / 'templates',
+
 )
 
 
