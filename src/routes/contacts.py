@@ -1,6 +1,7 @@
 from typing import List, Optional
 
 from fastapi import APIRouter, HTTPException, Depends, status, Query
+from fastapi_limiter.depends import RateLimiter
 from sqlalchemy.orm import Session
 
 from src.database.db import get_db
@@ -12,8 +13,9 @@ from src.services.auth import auth_service
 router = APIRouter(prefix='/contacts', tags=["contacts"])
 
 
-@router.get("/", response_model=list[ContactResponse],
-            name='Get all contacts or Get by first_name, last_name, or email')
+@router.get("/", response_model=list[ContactResponse], name='Get all contacts or Get by first_name, last_name, or email',
+            description='No more than 10 requests per minute',
+            dependencies=[Depends(RateLimiter(times=10, seconds=60))])
 async def get_contact_by_name(skip: int = 0, limit: int = Query(default=10, ge=1, le=50),
                               first_name: Optional[str] = Query(default=None),
                               last_name: Optional[str] = Query(default=None),
