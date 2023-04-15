@@ -678,7 +678,7 @@ files = [
 ]
 
 [package.dependencies]
-email-validator = {version = ">=1.0.3", optional = true, markers = "extra == \"email\""}
+python-dotenv = {version = ">=0.10.4", optional = true, markers = "extra == \"dotenv\""}
 typing-extensions = ">=4.2.0"
 
 [package.extras]
@@ -926,4 +926,4 @@ standard = ["colorama (>=0.4)", "httptools (>=0.5.0)", "python-dotenv (>=0.13)",
 [metadata]
 lock-version = "2.0"
 python-versions = "^3.10"
-content-hash = "45eeb51d7748d8add9ba4810451cdc93bea78926c2409fe94267b998240e300f"
+content-hash = "eaffc68ee2960dd4c165e7d7b58d4168fa71410de92ca865acc6527c9ae5ae89"
