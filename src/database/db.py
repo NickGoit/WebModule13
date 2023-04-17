@@ -1,22 +1,10 @@
-import configparser
-import pathlib
+
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
 from sqlalchemy.exc import SQLAlchemyError
 from fastapi import HTTPException, status
 from src.conf.config import settings
 
-# file_config = pathlib.Path(__file__).parent.parent.joinpath('config.ini')
-# config = configparser.ConfigParser()  #экземпляр конфига
-# config.read(file_config)  #файл инициализации
-#
-# username = config.get('DB_DEV', 'user')
-# password = config.get('DB_DEV', 'password')
-# db_name = config.get('DB_DEV', 'db_name')
-# host = config.get('DB_DEV', 'host')
-# port = config.get('DB_DEV', 'port')
-
-# SQLALCHEMY_DATABASE_URL = f'postgresql+psycopg2://{username}:{password}@{host}:{port}/{db_name}'
 
 SQLALCHEMY_DATABASE_URL = settings.sqlalchemy_database_url
 engine = create_engine(SQLALCHEMY_DATABASE_URL, echo=True)

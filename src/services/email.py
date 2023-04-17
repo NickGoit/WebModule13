@@ -8,11 +8,6 @@ from src.services.auth import auth_service
 from src.conf.config import settings
 
 conf = ConnectionConfig(
-    # MAIL_USERNAME="Fastapi_app@meta.ua",
-    # MAIL_PASSWORD="WebModule13",
-    # MAIL_FROM="Fastapi_app@meta.ua",
-    # MAIL_PORT=465,
-    # MAIL_SERVER="smtp.meta.ua",
     MAIL_USERNAME=settings.mail_username,
     MAIL_PASSWORD=settings.mail_password,
     MAIL_FROM=settings.mail_from,
