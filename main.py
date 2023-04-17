@@ -1,7 +1,7 @@
 import redis.asyncio as redis
 
 from src.conf.config import settings
-from src.routes import contacts, auth
+from src.routes import contacts, auth, users
 from sqlalchemy.orm import Session
 from src.database.db import get_db
 from sqlalchemy import text
@@ -14,6 +14,7 @@ app = FastAPI()
 
 app.include_router(auth.router, prefix='/api')
 app.include_router(contacts.router, prefix='/api')
+app.include_router(users.router, prefix='/api')
 
 origins = [
     "http://localhost:3000"

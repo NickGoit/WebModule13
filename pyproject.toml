@@ -21,6 +21,7 @@ redis = "^4.5.4"
 python-dotenv = "^1.0.0"
 fastapi-limiter = "^0.1.5"
 asyncio = "^3.4.3"
+cloudinary = "^1.32.0"
 
 
 [build-system]
