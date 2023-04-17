@@ -46,7 +46,8 @@ async def get_contact(contact_id: int, db: Session = Depends(get_db),
     return contact
 
 
-@router.post("/", response_model=ContactResponse, status_code=status.HTTP_201_CREATED)
+@router.post("/", response_model=ContactResponse, description='No more than 10 requests per minute',
+             dependencies=[Depends(RateLimiter(times=10, seconds=60))], status_code=status.HTTP_201_CREATED)
 async def create_contact(body: ContactModel, db: Session = Depends(get_db),
                          current_user: User = Depends(auth_service.get_current_user)):
     contact_data = await repository_contacts.verify_email_phone(body.email, body.phone, db)
